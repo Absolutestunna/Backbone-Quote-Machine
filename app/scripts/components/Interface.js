@@ -38,22 +38,14 @@ var Interface = React.createClass({displayName: "Interface",
   handleAuthentication: function(){
     var user = $('#username').val();
     var pass = $('#password').val();
-
-    $.ajax({
-      method: 'POST',
-      url: this.props.AUTH_URL,
-      contentType: 'application/json',
-      dataType: 'json',
-      data: JSON.stringify({
-        user: user,
-        pass: pass
-      })
-
-    }).done(function(data){
-      console.log('data', data);
-    }).fail(function(err){
-      console.log('err', err);
-    });
+    $.post(this.props.AUTH_URL),
+    {
+      'user': user,
+      'pass': pass
+    },
+    function(result){
+      console.log(result);
+    }
   },
 
   render: function(){
